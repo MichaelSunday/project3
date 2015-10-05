@@ -25,18 +25,18 @@ yelp.search({term: "bars", location: "Los Angeles"}, function(error, data) {
   console.log(data);
 });
 
-// See http://www.yelp.com/developers/documentation/v2/business
-yelp.business("yelp-san-francisco", function(error, data) {
-  console.log(error);
-  console.log(data);
-});
-placesController.get('/', function(req, res){
-	res.render('index');
-	yelp.search({term: "bars", location: "Los Angeles"}, function(error, data) {
-  console.log(error);
-  console.log(data);
-});
+// // See http://www.yelp.com/developers/documentation/v2/business
+// yelp.business("yelp-san-francisco", function(error, data) {
+//   console.log(error);
+//   console.log(data);
+// });
+// placesController.get('/', function(req, res){
+// 	res.render('index');
+// 	yelp.search({term: "bars", location: "Los Angeles"}, function(error, data) {
+//   console.log(error);
+//   console.log(data);
+// });
 
-});
+// });
 
 module.exports = placesController;
