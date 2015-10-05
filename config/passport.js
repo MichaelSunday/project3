@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 
 module.exports = function(passport){
@@ -14,13 +15,13 @@ module.exports = function(passport){
   });
 
   passport.use('facebook', new FacebookStrategy({
-    clientID        : process.env.FACEBOOK_API_KEY,
-    clientSecret    : process.env.FACEBOOK_API_SECRET,
+    clientID        : process.env.FACEBOOK_APP_ID,
+    clientSecret    : process.env.FACEBOOK_APP_SECRET,
     callbackURL     : 'http://localhost:3000/auth/facebook/callback',
     enableProof     : true,
     profileFields   : ['name', 'emails']
   }, function(access_token, refresh_token, profile, done) {
-
+  	console.log(profile);
     // // Use this to see the information returned from Facebook
     // console.log(profile)
 

@@ -9,6 +9,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('express-session');
+var expressSession = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -36,6 +38,12 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use( cookieParser() );
+// app.use(expressSession({secret: 'mySecretKey',
+//         saveUniniatialized: true,
+//         resave: true}));
+// app.use(passport.initialize());
+// app.use(passport.session());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -45,6 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 // app.use('/users', users);
 
+// require("./config/passport")(passport);
 
 
 // catch 404 and forward to error handler
@@ -82,5 +91,5 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(8080);
+
 console.log('server starting...go to localhost:8080');
