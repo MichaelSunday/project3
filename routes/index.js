@@ -1,10 +1,20 @@
 var express = require('express');
 var router = express.Router();
+var app = express();
+var cookieParser = require('cookie-parser');
 var passport = require('passport');
-var expressSession = require('')
+var expressSession = require('express-session');
+var methodOverride = require('method-override');
+
+
+require("../config/passport")(passport);
+
 
 app.use( cookieParser() );
-app.use(expressSession({secret: 'mySecretKey'}));
+app.use(expressSession({
+		secret: 'mySecretKey',
+		saveUninitialized: true,
+		resave: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -13,7 +23,6 @@ app.use(passport.session());
 //   res.render('index', { title: 'Express' });
 // });
 
-require("./config/passport")(passport);
 
 router.use('/places', require('./places'));
 
@@ -25,7 +34,7 @@ router.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'})
 
 router.get('/auth/facebook/callback',
 	passport.authenticate('facebook', {
-		successRedirect: '/places',
+		successRedirect: '/',
 		failureRedirect: '/'
 	})
 );
