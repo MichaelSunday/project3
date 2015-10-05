@@ -19,24 +19,45 @@ var yelp = require("yelp").createClient({
   token_secret: "pxGh2rDa0tOtG9eRd7CwHRP6SoY"
 });
 
+// $(document).ready(function() {
+// 	$.get('http://www.omdbapi.com/?s=samurai', function(response, status) {
+// 		if (status == 'success') {
+// 			console.log(response);
+// 			// MOVIES = response;
+// 			// initPage();
+// 		}
+// 	});
+// });
+
 // See http://www.yelp.com/developers/documentation/v2/search_api
 yelp.search({term: "bars", location: "Los Angeles"}, function(error, data) {
-  console.log(error);
-  console.log(data);
+  //console.log(error);
+  //console.log(data);
 });
 
-// // See http://www.yelp.com/developers/documentation/v2/business
-// yelp.business("yelp-san-francisco", function(error, data) {
-//   console.log(error);
-//   console.log(data);
-// });
-// placesController.get('/', function(req, res){
-// 	res.render('index');
-// 	yelp.search({term: "bars", location: "Los Angeles"}, function(error, data) {
-//   console.log(error);
-//   console.log(data);
-// });
+// See http://www.yelp.com/developers/documentation/v2/business
+yelp.business("yelp-san-francisco", function(error, data) {
+  //console.log(error);
+  //console.log(data);
+});
+placesController.get('/', function(req, res){
+	yelp.search({term: "bars", location: "Los Angeles"}, function(error, data) {
+	    //console.log(error);
+	    //console.log(data);
+	    res.render('index');
 
-// });
+	});
+});
+placesController.get('/location', function(req, res){
+	console.log('go')
+	var location = req.query.searchTerm;
+
+	yelp.search({term: "bars", location: location}, function(error, data) {
+	  console.log(error);
+	  console.log(data);
+	  res.json(data.businesses);
+	});
+
+});
 
 module.exports = placesController;
