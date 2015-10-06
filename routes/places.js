@@ -1,11 +1,5 @@
 
 
-
-
-
-
-
-
 // Request API access: http://www.yelp.com/developers/getting_started/api_access
 var express = require('express');
 
@@ -41,23 +35,21 @@ yelp.business("yelp-san-francisco", function(error, data) {
   //console.log(data);
 });
 placesController.get('/', function(req, res){
-	yelp.search({term: "bars", location: "Los Angeles"}, function(error, data) {
+	// yelp.search({term: "bars", location: "Los Angeles"}, function(error, data) {
 	    //console.log(error);
 	    //console.log(data);
 	    res.render('index');
 
-	});
 });
-placesController.get('/location', function(req, res){
-	console.log('go')
+placesController.get('/places', function(req, res){
+	// console.log('go')
 	var location = req.query.searchTerm;
-
-	yelp.search({term: "bars", location: location}, function(error, data) {
-	  console.log(error);
-	  console.log(data);
-	  res.json(data.businesses);
-	});
-
+	console.log(location);
+	// yelp.search({term: "bars", location: location}, function(error, data) {
+	//   // console.log(error);
+	//   // console.log(data.businesses);
+	//   // res.json(data.businesses);
+	// });
 });
 
 module.exports = placesController;
