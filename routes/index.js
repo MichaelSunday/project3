@@ -24,6 +24,7 @@ app.use(passport.session());
 // });
 
 
+
 router.use('/places', require('./places'));
 
 router.get('/', function(req, res){
