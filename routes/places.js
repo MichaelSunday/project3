@@ -54,12 +54,13 @@ placesController.get('/location', function(req, res){
 
 placesController.get('/term', function(req, res){
 	console.log('go')
-	var location = req.query.searchTerm;
+	var location = req.query.searchCategory;
 
 	yelp.search({term: "bars", location: location}, function(error, data) {
 	  console.log(error);
 	  console.log(data);
-	  res.json(data.businesses);
+	  // res.json(data.businesses);
+	  res.render('show.ejs');
 	});
 
 });
